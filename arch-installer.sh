@@ -25,7 +25,7 @@ ROOT_PASSWORD="Admin123!"
 HOME_USERNAME="wartuu"
 HOME_PASSWORD="Admin123!"
 
-# [Y]es / [N]o
+# [Y]es / [N]o        !!! CASE SENSITIVE !!!
 SETUP_DOTFILES="Y"
 
 # END CONFIG
@@ -117,28 +117,37 @@ echo "Installing and configuring GRUB..."
 arch-chroot /mnt grub-install ${DISK}
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
-# BASE
-arch-chroot /mnt pacman -S kitty git neovim ttf-jetbrains-mono-nerd --noconfirm
+# YAY
+
+arch-chroot /mnt bash -c "
+  git clone https://aur.archlinux.org/yay.git /home/${HOME_USERNAME}/yay &&
+  cd /home/${HOME_USERNAME}/yay &&
+  sudo -u ${HOME_USERNAME} makepkg -si --noconfirm &&
+  cd .. &&
+  rm -rf yay
+"
+
+# BASE + THINKPAD SPECIFIC
+arch-chroot /mnt pacman -S acpi acpid tlp --noconfirm
+arch-chroot /mnt pacman -S kitty git base-devel neovim ttf-jetbrains-mono-nerd otf-font-awesome --noconfirm
 
 # WAYLAND
-arch-chroot /mnt pacman -S hyprland wayland wofi waybar wl-clipboard mako lxappearance --noconfirm
+arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wlogout wl-clipboard mako lxappearance ly --noconfirm
+arch-chroot /mnt systemctl enable ly.service
 
-# GUI
-arch-chroot /mnt pacman -S thunar thunar-archive-plugin file-roller vlc firefox --noconfirm
+arch-chroot /mnt yay -S wlogout --noconfirm
+arch-chroot /mnt yay -S swaylock-effects-git --noconfirm
+
+# ESSENTIALS
+arch-chroot /mnt pacman -S thunar thunar-archive-plugin zathura file-roller vlc firefox --noconfirm
+
 
 if [[ "$SETUP_DOTFILES" == "Y" ]]; then
     echo "Setting up dotfiles..."
-    install_script="/mnt/root/install.sh"
-    mv install.sh "$install_script"
-    chmod +x "$install_script"
-    arch-chroot /mnt /bin/bash /root/install.sh
-
-    rm "$install_script"
-
+    cp /mnt/config/* /mnt/home/${HOME_USERNAME}/.config/
 else
     echo "Skipping dotfiles setup."
 fi
-
 
 umount -a
 

@@ -134,7 +134,7 @@ arch-chroot /mnt pacman -S ttf-jetbrains-mono-nerd otf-font-awesome ttf-font-awe
 
 arch-chroot /mnt chsh -s $(which zsh) ${HOME_USERNAME}
 # WAYLAND
-arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wlogout wl-clipboard mako lxappearance ly pavucontrol --noconfirm
+arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wl-clipboard mako lxappearance ly pavucontrol --noconfirm
 arch-chroot /mnt systemctl enable ly.service
 
 arch-chroot /mnt yay -S wlogout --noconfirm

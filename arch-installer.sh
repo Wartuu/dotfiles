@@ -129,14 +129,17 @@ arch-chroot /mnt bash -c "
 
 # BASE + THINKPAD SPECIFIC
 arch-chroot /mnt pacman -S acpi acpid tlp --noconfirm
-arch-chroot /mnt pacman -S kitty git base-devel neovim ttf-jetbrains-mono-nerd otf-font-awesome --noconfirm
+arch-chroot /mnt pacman -S alacritty git base-devel neovim zsh --noconfirm
+arch-chroot /mnt pacman -S ttf-jetbrains-mono-nerd otf-font-awesome ttf-font-awesome ttf-fantasque-nerd --noconfirm
 
+arch-chroot /mnt chsh -s $(which zsh) ${HOME_USERNAME}
 # WAYLAND
-arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wlogout wl-clipboard mako lxappearance ly --noconfirm
+arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wlogout wl-clipboard mako lxappearance ly pavucontrol --noconfirm
 arch-chroot /mnt systemctl enable ly.service
 
 arch-chroot /mnt yay -S wlogout --noconfirm
 arch-chroot /mnt yay -S swaylock-effects-git --noconfirm
+arch-chroot /mnt yay -S pfetch --noconfirm
 
 # ESSENTIALS
 arch-chroot /mnt pacman -S thunar thunar-archive-plugin zathura file-roller vlc firefox --noconfirm

@@ -128,6 +128,9 @@ arch-chroot /mnt bash -c "
   rm -rf yay
 "
 
+echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /mnt/etc/pacman.conf
+arch-chroot /mnt pacman -Sy --noconfirm
+
 # BASE + THINKPAD SPECIFIC
 arch-chroot /mnt pacman -S acpi acpid tlp --noconfirm
 arch-chroot /mnt pacman -S alacritty git base-devel neovim zsh --noconfirm
@@ -147,6 +150,13 @@ arch-chroot /mnt yay -S pfetch --noconfirm
 
 # ESSENTIALS
 arch-chroot /mnt pacman -S thunar thunar-archive-plugin zathura file-roller vlc firefox --noconfirm
+
+# GAMING
+arch-chroot /mnt pacman -S vulkan-intel lib32-vulkan-intel mesa vulkan-tools lib32-mesa steam --noconfirm
+
+# TOOLS
+arch-chroot /mnt yay -S visual-studio-code-bin --noconfirm
+arch-chroot /mnt pacman -S intellij-idea-community-edition --noconfirm
 
 
 

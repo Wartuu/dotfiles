@@ -77,7 +77,7 @@ mount "${DISK}1" /mnt/boot/efi
 swapon "${DISK}2"
 
 echo "Installing base system..."
-pacstrap /mnt base linux linux-firmware sof-firmware base-devel grub efibootmgr networkmanager nano ${ADDITIONAL_PACKAGES:-} --noconfirm
+pacstrap /mnt base linux linux-firmware sof-firmware base-devel grub efibootmgr networkmanager bluez bluez-utils blueman network-manager-applet nano ${ADDITIONAL_PACKAGES:-} --noconfirm
 
 echo "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -112,6 +112,7 @@ arch-chroot /mnt pacman -S sudo --noconfirm
 
 echo "Enabling essential services..."
 arch-chroot /mnt systemctl enable NetworkManager
+arch-chroot /mnt systemctl enable bluetooth
 
 echo "Installing and configuring GRUB..."
 arch-chroot /mnt grub-install ${DISK}
@@ -134,8 +135,11 @@ arch-chroot /mnt pacman -S ttf-jetbrains-mono-nerd otf-font-awesome ttf-font-awe
 
 arch-chroot /mnt chsh -s $(which zsh) ${HOME_USERNAME}
 # WAYLAND
-arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wl-clipboard mako lxappearance ly pavucontrol --noconfirm
-arch-chroot /mnt systemctl enable ly.service
+arch-chroot /mnt pacman -S hyprland wayland rofi waybar hyprpaper wl-clipboard mako lxappearance greetd greetd-tuigreet  --noconfirm
+arch-chroot /mnt pacman -S pavucontrol blueman --noconfirm
+arch-chroot /mnt systemctl enable greetd.service
+
+cp ./greetd/config.toml /mnt/etc/greetd/config.toml
 
 arch-chroot /mnt yay -S wlogout --noconfirm
 arch-chroot /mnt yay -S swaylock-effects-git --noconfirm
@@ -145,9 +149,12 @@ arch-chroot /mnt yay -S pfetch --noconfirm
 arch-chroot /mnt pacman -S thunar thunar-archive-plugin zathura file-roller vlc firefox --noconfirm
 
 
+
 if [[ "$SETUP_DOTFILES" == "Y" ]]; then
     echo "Setting up dotfiles..."
-    cp /mnt/config/* /mnt/home/${HOME_USERNAME}/.config/
+    cp -r ./config/* /mnt/home/${HOME_USERNAME}/.config/
+
+    chmod +x /mnt/home/${HOME_USERNAME}/.config/swaylock/lock.sh
 else
     echo "Skipping dotfiles setup."
 fi

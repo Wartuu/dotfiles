@@ -120,13 +120,9 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # YAY
 
-arch-chroot /mnt bash -c "
-  git clone https://aur.archlinux.org/yay.git /home/${HOME_USERNAME}/yay &&
-  cd /home/${HOME_USERNAME}/yay &&
-  sudo -u ${HOME_USERNAME} makepkg -si --noconfirm &&
-  cd .. &&
-  rm -rf yay
-"
+git clone https://aur.archlinux.org/yay.git /mnt/home/$HOME_USERNAME/yay
+arch-chroot /mnt chown -R $HOME_USERNAME:$HOME_USERNAME /home/$HOME_USERNAME/yay
+arch-chroot /mnt sudo -u $HOME_USERNAME bash -c "cd /home/$HOME_USERNAME/yay && makepkg -si --noconfirm"
 
 echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /mnt/etc/pacman.conf
 arch-chroot /mnt pacman -Sy --noconfirm
@@ -150,6 +146,8 @@ arch-chroot /mnt yay -S pfetch --noconfirm
 
 # ESSENTIALS
 arch-chroot /mnt pacman -S thunar thunar-archive-plugin zathura file-roller vlc firefox --noconfirm
+
+arch-chroot /mnt sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # GAMING
 arch-chroot /mnt pacman -S vulkan-intel lib32-vulkan-intel mesa vulkan-tools lib32-mesa steam --noconfirm

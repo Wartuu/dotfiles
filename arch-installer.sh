@@ -165,6 +165,8 @@ if [[ "$SETUP_DOTFILES" == "Y" ]]; then
     cp -r ./config/* /mnt/home/${HOME_USERNAME}/.config/
 
     chmod +x /mnt/home/${HOME_USERNAME}/.config/swaylock/lock.sh
+
+    arch-chroot /mnt chown -R ${HOME_USERNAME}:${HOME_USERNAME} /home/wartuu/.config/
 else
     echo "Skipping dotfiles setup."
 fi

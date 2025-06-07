@@ -2,6 +2,12 @@
 
 My personal dotfiles used for my Linux systems.
 
+## Preview
+
+![Screenshot 1](screenshots/1.png)
+![Screenshot 2](screenshots/2.png)
+![Screenshot 3](screenshots/3.png)
+
 ## Installation
 
 ```bash

@@ -15,4 +15,3 @@ stow -t ~/ .
     - [Catppuccin GTK theme](https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme)
     - [rofi config](https://github.com/adi1090x/rofi)
     - [Tela icons](https://github.com/vinceliuice/Tela-icon-theme)
-    -

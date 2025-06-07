@@ -1,0 +1,53 @@
+@import 'colors.css';
+
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 15px;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+}
+
+#workspaces {
+  margin: 5px 10px;
+}
+
+#workspaces button {
+  background-color: @surface0;
+  border-radius: 0px;
+  margin-left: 5px;
+
+  color: @lavender;
+}
+
+#workspaces button.active {
+  background: transparent;
+  border-bottom: 1px solid @lavender;
+}
+
+#clock,
+#tray,
+#custom-updates,
+#custom-cava {
+  margin: 5px;
+  background-color: @surface0;
+  padding: 0px 5px;
+  border-bottom: 1px solid @lavender;
+}
+#cpu,
+#memory,
+#custom-network {
+  padding: 5px 5px;
+}
+
+#custom-separator {
+  padding: 0 5px;
+  color: @lavender;
+}
+
+#custom-updates {
+  padding-left: 10px;
+}

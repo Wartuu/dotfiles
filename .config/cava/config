@@ -1,5 +1,7 @@
-[color]
+noise_reduction = 0.77
+bars = 12
 
+[color]
 gradient = 1
 
 gradient_color_1 = '#8bd5ca'

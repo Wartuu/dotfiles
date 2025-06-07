@@ -1,0 +1,70 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/network",
+    "custom/separator",
+    "cpu",
+    "custom/separator",
+    "memory"
+  ],
+  "modules-center": [
+    "custom/music"
+  ],
+  "modules-right": [
+    "temperature",
+    "tray",
+    "custom/cava",
+    "clock",
+    "custom/updates"
+  ],
+  "custom/separator": {
+    "format": "|",
+    "tooltip": false
+  },
+  "custom/cava": {
+    "format": "{}",
+    "return-type": "json",
+    "tooltip": "{tooltip}",
+    "restart-interval": 1,
+    "exec": "~/.config/waybar/scripts/cava.sh"
+  },
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/update.sh",
+    "interval": 3600,
+    "return-type": "json",
+    "tooltip": true
+  },
+  "custom/network": {
+    "exec": "~/.config/waybar/scripts/network.sh",
+    "interval": 1,
+    "return-type": "json"
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "Europe/Warsaw",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%Y %B %d}"
+  },
+  "cpu": {
+    "format": "  {usage}%"
+  },
+  "memory": {
+    "format": "  {}%"
+  },
+  "custom/music": {
+    "format": "󰎆 {}",
+    "escape": true,
+    "interval": 3,
+    "tooltip": "{}",
+    "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+    "on-click": "playerctl play-pause",
+    "max-length": 50
+  }
+}

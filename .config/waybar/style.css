@@ -31,12 +31,14 @@
 #clock,
 #tray,
 #custom-updates,
+#custom-clipboard,
 #custom-cava {
   margin: 5px;
   background-color: @surface0;
   padding: 0px 5px;
   border-bottom: 1px solid @lavender;
 }
+
 #cpu,
 #memory,
 #custom-network {

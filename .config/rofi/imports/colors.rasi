@@ -1,0 +1,9 @@
+* {
+    background: rgba(30, 29, 47, 0.80);
+    background-alt:rgba(40, 40, 57, 0.9);
+    foreground:     #D9E0EEFF;
+    selected:       #b7bdf8ff;
+    selected-border:#b7bdf8ff;//#6a5acdee;
+    active:         #ABE9B3FF;
+    urgent:         #F28FADFF;
+}

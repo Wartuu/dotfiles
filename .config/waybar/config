@@ -14,7 +14,7 @@
     "custom/music"
   ],
   "modules-right": [
-    "temperature",
+    "custom/clipboard",
     "tray",
     "custom/cava",
     "clock",
@@ -65,6 +65,11 @@
     "tooltip": "{}",
     "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
     "on-click": "playerctl play-pause",
-    "max-length": 50
+    "max-length": 40
+  },
+  "custom/clipboard": {
+    "format": " 󰅇 ",
+    "interval": 2,
+    "on-click": "cliphist list | rofi -dmenu -theme ~/.config/rofi/custom.rasi | cliphist decode | wl-copy"
   }
 }

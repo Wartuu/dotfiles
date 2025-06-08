@@ -34,6 +34,8 @@
 #tray,
 #custom-updates,
 #custom-clipboard,
+#pulseaudio,
+#pulseaudio-slider,
 #custom-cava {
   margin: 5px;
   background-color: @surface0;
@@ -43,6 +45,7 @@
 
 #cpu,
 #memory,
+#temperature,
 #custom-network {
   padding: 5px 5px;
 }
@@ -54,4 +57,24 @@
 
 #custom-updates {
   padding-left: 10px;
+}
+
+#pulseaudio-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+#pulseaudio-slider trough {
+  min-height: 10px;
+  min-width: 80px;
+  border-radius: 5px;
+  background-color: black;
+}
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: green;
 }

@@ -105,7 +105,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh/config.json)"
-pfetch
 
 # Created by `pipx` on 2025-06-05 21:20:45
 export PATH="$PATH:/home/wartuu/.local/bin"
@@ -113,3 +112,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias yt="ytfzf"
 alias dir="ls -la"
+
+clear
+pfetch

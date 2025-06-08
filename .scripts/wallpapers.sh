@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wallpaper_dir="$HOME/.wallpapers"
-interval=600
+interval=1800
 
 while true; do
   for wallpaper in "$wallpaper_dir"/*; do

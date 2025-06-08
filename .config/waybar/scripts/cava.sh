@@ -23,9 +23,7 @@ data_format = ascii
 ascii_max_range = $MAX_VAL
 EOF
 
-# Start cava with the generated config, parse output live
 cava -p "$CONFIG" | while read -r line; do
-    # line example: "0123456789" (each digit corresponds to a bar level 0..MAX_VAL)
     out=""
     for ((i=0; i<BARS; i++)); do
         char="${line:i:1}"

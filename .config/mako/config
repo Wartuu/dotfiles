@@ -1,0 +1,34 @@
+font=JetBrainsMono Nerd Font 12
+format=<b>%s </b> \n%b
+sort=-time
+output=DP-2
+layer=overlay
+anchor=top-right
+width=300
+height=110
+margin=15
+padding=0,5,10,5
+border-size=1
+border-radius=10
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+
+background-color=#24273a
+text-color=#cad3f5
+border-color=#b7bdf8
+progress-color=over #363a4f
+
+[urgency=high]
+border-color=#f5a97f
+
+
+[app-name=lightcord]
+border-color=#6a5acdee
+
+[summary~="log-.*"]
+border-color=#6a5acdee
+
+[app-name=lightcord summary~="(.*(^| )orz|ORZ|sto|STO|otl|OTL( |$).*)"]
+invisible=1

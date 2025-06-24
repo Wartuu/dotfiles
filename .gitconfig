@@ -1,7 +1,0 @@
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[user]
-	email = michu4154@gmail.com
-	name = wartuu
-[core]
-	editor = nvim

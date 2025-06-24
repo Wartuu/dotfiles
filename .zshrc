@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh/config.json)"
+eval "$(zoxide init zsh)"
 
 # Created by `pipx` on 2025-06-05 21:20:45
 export PATH="$PATH:/home/wartuu/.local/bin"
@@ -112,12 +113,14 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias yt="ytfzf"
 alias dir="ls -la"
+alias cd="z"
 
 clear
 pfetch
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

@@ -16,10 +16,15 @@ cache_file="/tmp/public_ip.cache"
 cache_age=3600
 
 if [[ -f "$cache_file" && $(($(date +%s) - $(stat -c %Y "$cache_file"))) -lt $cache_age ]]; then
-    public_ip=$(cat "$cache_file")
+    public_ip=$(<"$cache_file")
+    if [[ -z "$public_ip" ]]; then
+        public_ip=$(curl -s https://ipinfo.io/ip)
+        echo "$public_ip" > "$cache_file"
+    fi
 else
     public_ip=$(curl -s https://ipinfo.io/ip)
     echo "$public_ip" > "$cache_file"
 fi
+
 
 echo "{\"text\":\" ${rx_rate_mbps}MB/s  ${tx_rate_mbps}MB/s\", \"tooltip\":\"Local IP: $local_ip\nPublic IP: $public_ip\"}"

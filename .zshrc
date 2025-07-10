@@ -116,7 +116,13 @@ alias dir="ls -la"
 alias cd="z"
 
 clear
-pfetch
+
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    fastfetch
+else
+    pfetch
+fi
+
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin

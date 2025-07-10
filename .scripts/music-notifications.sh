@@ -12,6 +12,7 @@ playerctl metadata --format '{{ artist }} - {{ title }}' --follow | while read -
     continue
   fi
 
+  arturl=$(playerctl metadata mpris:artUrl | sed 's|file://||')
   monitor="DP-3"
   export MAKO_MONITOR="$monitor"
 
@@ -19,9 +20,9 @@ playerctl metadata --format '{{ artist }} - {{ title }}' --follow | while read -
   
   # Send notification and capture ID (replace if prev_id is set)
   if [[ "$prev_id" -gt 0 ]]; then
-    new_id=$(notify-send -r "$prev_id" -p "Now Playing" "$song")
+    new_id=$(notify-send -r "$prev_id" -p "Now Playing" "$song" -i "$arturl")
   else
-    new_id=$(notify-send -p "Now Playing" "$song")
+    new_id=$(notify-send -r "$prev_id" -p "Now Playing" "$song" -i "$arturl")
   fi
 
   echo "$new_id" > "$id_file"

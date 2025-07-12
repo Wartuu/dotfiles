@@ -20,6 +20,7 @@
     "custom/clipboard",
     "tray",
     "pulseaudio",
+    "custom/headset",
     "custom/cava",
     "clock",
     "custom/updates"
@@ -73,6 +74,14 @@
     "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
     "on-click": "playerctl play-pause",
     "max-length": 40
+  },
+  "custom/headset": {
+    "format": "{}",
+    "escape": true,
+    "interval": 10,
+    "tooltip": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/headset.sh"
   },
   "custom/clipboard": {
     "format": " 󰅇 ",
